@@ -5,6 +5,7 @@ Spyder Editor
 This is a temporary script file.
 """
 
+
 import time
 
 class DoorAccessSystem:
@@ -14,10 +15,10 @@ class DoorAccessSystem:
         self.attempts = 0
     
     def press_key(self, key):
-        if len(self.entered_password) < 4:
+        if len(self.entered_password) < 5:
             self.entered_password += key
             print(f"Current Entry: {self.entered_password}")
-        if len(self.entered_password) == 4:
+        if len(self.entered_password) == 5:
             self.verify_password()
     
     def verify_password(self):
@@ -46,7 +47,7 @@ class DoorAccessSystem:
         print("System Reset. Enter Password:")
 
 def main():
-    correct_password = "1234"
+    correct_password = "12345"
     system = DoorAccessSystem(correct_password)
     
     print("Welcome to GJU Door Access System")
