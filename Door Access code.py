@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-This is a temporary script file.
-"""
+# sally 
 
 
 import time
@@ -13,6 +8,8 @@ class DoorAccessSystem:
         self.correct_password = correct_password
         self.entered_password = ""
         self.attempts = 0
+        self.max_attempts = 3
+    
     
     def press_key(self, key):
         if len(self.entered_password) < 5:
@@ -32,9 +29,14 @@ class DoorAccessSystem:
         self.reset_system()
     
     def wrong_password(self):
+        self.attempts += 1
         print("Incorrect Password! Beep!")
         self.beep_sound()
-        self.reset_system()
+        if self.attempts >= self.max_attempts:
+            print("Too many incorrect attempts. System locked.")
+            exit()  # Exit the program
+        else:
+            self.reset_system()
     
     def beep_sound(self):
         duration = 1  # Beep duration in seconds
@@ -43,7 +45,6 @@ class DoorAccessSystem:
     
     def reset_system(self):
         self.entered_password = ""
-        self.attempts += 1
         print("System Reset. Enter Password:")
 
 def main():
@@ -51,7 +52,7 @@ def main():
     system = DoorAccessSystem(correct_password)
     
     print("Welcome to GJU Door Access System")
-    print("Enter 4-digit password using the keypad:")
+    print("Enter 5-digit password using the keypad:")
     
     while True:
         key = input("Press a key (0-9): ")
